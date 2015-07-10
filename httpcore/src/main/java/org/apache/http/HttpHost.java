@@ -65,6 +65,8 @@ public final class HttpHost implements Cloneable, Serializable {
 
     protected final InetAddress address;
 
+    private static final Locale LOCALE_ROOT = new Locale("","");
+
     /**
      * Creates {@code HttpHost} instance with the given scheme, hostname and port.
      *
@@ -78,9 +80,9 @@ public final class HttpHost implements Cloneable, Serializable {
     public HttpHost(final String hostname, final int port, final String scheme) {
         super();
         this.hostname   = Args.containsNoBlanks(hostname, "Host name");
-        this.lcHostname = hostname.toLowerCase(Locale.ROOT);
+        this.lcHostname = hostname.toLowerCase(LOCALE_ROOT);
         if (scheme != null) {
-            this.schemeName = scheme.toLowerCase(Locale.ROOT);
+            this.schemeName = scheme.toLowerCase(LOCALE_ROOT);
         } else {
             this.schemeName = DEFAULT_SCHEME_NAME;
         }
@@ -168,9 +170,9 @@ public final class HttpHost implements Cloneable, Serializable {
         super();
         this.address = Args.notNull(address, "Inet address");
         this.hostname = Args.notNull(hostname, "Hostname");
-        this.lcHostname = this.hostname.toLowerCase(Locale.ROOT);
+        this.lcHostname = this.hostname.toLowerCase(LOCALE_ROOT);
         if (scheme != null) {
-            this.schemeName = scheme.toLowerCase(Locale.ROOT);
+            this.schemeName = scheme.toLowerCase(LOCALE_ROOT);
         } else {
             this.schemeName = DEFAULT_SCHEME_NAME;
         }

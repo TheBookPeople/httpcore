@@ -42,6 +42,7 @@ import org.apache.http.annotation.ThreadSafe;
 public final class Registry<I> implements Lookup<I> {
 
     private final Map<String, I> map;
+    private final static Locale LOCALE_ROOT = new Locale("","");
 
     Registry(final Map<String, I> map) {
         super();
@@ -53,7 +54,7 @@ public final class Registry<I> implements Lookup<I> {
         if (key == null) {
             return null;
         }
-        return map.get(key.toLowerCase(Locale.ROOT));
+        return map.get(key.toLowerCase(LOCALE_ROOT));
     }
 
     @Override

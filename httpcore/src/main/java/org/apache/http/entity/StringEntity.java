@@ -69,7 +69,11 @@ public class StringEntity extends AbstractHttpEntity implements Cloneable {
         if (charset == null) {
             charset = HTTP.DEF_CONTENT_CHARSET;
         }
-        this.content = string.getBytes(charset);
+        try {
+            this.content = string.getBytes(charset.toString());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException("Failed charset was ("+charset.toString()+" - "+charset.displayName()+").", ex);
+        }
         if (contentType != null) {
             setContentType(contentType.toString());
         }

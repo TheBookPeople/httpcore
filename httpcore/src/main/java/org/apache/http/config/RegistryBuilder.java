@@ -43,10 +43,11 @@ import org.apache.http.util.Args;
 public final class RegistryBuilder<I> {
 
     private final Map<String, I> items;
+    private final static Locale LOCALE_ROOT = new Locale("","");
 
     public static <I> RegistryBuilder<I> create() {
         return new RegistryBuilder<I>();
-    }
+    };
 
     RegistryBuilder() {
         super();
@@ -56,7 +57,7 @@ public final class RegistryBuilder<I> {
     public RegistryBuilder<I> register(final String id, final I item) {
         Args.notEmpty(id, "ID");
         Args.notNull(item, "Item");
-        items.put(id.toLowerCase(Locale.ROOT), item);
+        items.put(id.toLowerCase(LOCALE_ROOT), item);
         return this;
     }
 

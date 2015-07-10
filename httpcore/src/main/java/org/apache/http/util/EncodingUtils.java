@@ -28,8 +28,6 @@ package org.apache.http.util;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.http.Consts;
-
 /**
  * The home for utility methods that handle various encoding tasks.
  *
@@ -104,7 +102,11 @@ public final class EncodingUtils {
      */
     public static byte[] getAsciiBytes(final String data) {
         Args.notNull(data, "Input");
-        return data.getBytes(Consts.ASCII);
+        try {
+            return data.getBytes("US-ASCII");
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**
@@ -119,7 +121,11 @@ public final class EncodingUtils {
      */
     public static String getAsciiString(final byte[] data, final int offset, final int length) {
         Args.notNull(data, "Input");
-        return new String(data, offset, length, Consts.ASCII);
+        try {
+            return new String(data, offset, length, "US-ASCII");
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**

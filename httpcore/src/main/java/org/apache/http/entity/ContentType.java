@@ -65,6 +65,8 @@ public final class ContentType implements Serializable {
 
     private static final long serialVersionUID = -7768694718232371896L;
 
+    private final static Locale LOCALE_ROOT = new Locale("","");
+
     // constants
     public static final ContentType APPLICATION_ATOM_XML = create(
             "application/atom+xml", Consts.ISO_8859_1);
@@ -177,7 +179,7 @@ public final class ContentType implements Serializable {
      * @return content type
      */
     public static ContentType create(final String mimeType, final Charset charset) {
-        final String type = Args.notBlank(mimeType, "MIME type").toLowerCase(Locale.ROOT);
+        final String type = Args.notBlank(mimeType, "MIME type").toLowerCase(LOCALE_ROOT);
         Args.check(valid(type), "MIME type may not contain reserved characters");
         return new ContentType(type, charset);
     }
@@ -245,7 +247,7 @@ public final class ContentType implements Serializable {
      */
     public static ContentType create(
             final String mimeType, final NameValuePair... params) throws UnsupportedCharsetException {
-        final String type = Args.notBlank(mimeType, "MIME type").toLowerCase(Locale.ROOT);
+        final String type = Args.notBlank(mimeType, "MIME type").toLowerCase(LOCALE_ROOT);
         Args.check(valid(type), "MIME type may not contain reserved characters");
         return create(mimeType, params, true);
     }

@@ -51,6 +51,8 @@ public class HeaderGroup implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 2608834160639271617L;
 
+    private static final Locale LOCALE_ROOT = new Locale("", "");
+
     /** The list of headers for this group, in the order in which they were added */
     private final List<Header> headers;
 
@@ -158,7 +160,7 @@ public class HeaderGroup implements Cloneable, Serializable {
                 valueBuffer.append(hdrs[i].getValue());
             }
 
-            return new BasicHeader(name.toLowerCase(Locale.ROOT), valueBuffer.toString());
+            return new BasicHeader(name.toLowerCase(LOCALE_ROOT), valueBuffer.toString());
         }
     }
 

@@ -71,11 +71,11 @@ public class SSLContexts {
      * @return default system SSL context
      */
     public static SSLContext createSystemDefault() throws SSLInitializationException {
-        try {
-            return SSLContext.getDefault();
-        } catch (final NoSuchAlgorithmException ex) {
+//        try {
+//            return SSLContext.getDefault();
+//        } catch (final NoSuchAlgorithmException ex) {
             return createDefault();
-        }
+//        }
     }
 
     /**
